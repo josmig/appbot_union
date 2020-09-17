@@ -1,5 +1,8 @@
 const cheerio = require('cheerio');
 const request = require('request-promise');
+const fs = require('fs-extra');
+
+const writeStream = fs.createWriteStream('empresariales.csv');
 
 //Informacion Facultad
 async function init(){
@@ -14,6 +17,8 @@ async function init(){
 	//console.log($)
 		
 	//Extrayendo el titulo
+	
+	console.log('******Facultades Y Descripcion Campus******\n');
 	const campus_description= $('.aio-icon-description');
 	const facultades_central = $('h3.aio-icon-title').each((i,e)=>{
 
@@ -44,13 +49,41 @@ async function fce(){
 	});
 		//const carrerasfce = $('.menu-item-text .menu-text').text('Carreras');
 	//const carrerasfce= $('nav');
-	const carrerasfce = $('nav span.menu-text').each((indice,elemento) => {
-		console.log(indice,$(elemento).text());
-	})
-	//console.log(carrerasfce.text().trim());
+	// const carrerasfce = $('nav span.menu-text').each((indice,elemento) => {
+	// 	console.log(indice,$(elemento).text());
 
+	// })	
+	// console.log(carrerasfce.text().eq(7).trim());
+	
+	//carreras
+	console.log('*****carreras******\n');
+		writeStream.write('Carreras')
+		$('nav').each((i,el)=>{
+			let carreras = [];
+			const items1 = $(el).find('li .menu-item-845').text();
+			const items2 = $(el).find('li .menu-item-1012').text();
+			const items3 = $(el).find('li .menu-item-1013').text();
+			const items4 = $(el).find('li .menu-item-846').text();
+	
+			
+			//carreras.push(items1,items2,items3)
+			carreras.push(items1,items2,items3,items4);
+	
+			//console.log(carreras);
+			writeStream.write(`${carreras}\n`);
+			carreras.forEach((e,i)=>{
+				//+'\n'
+				console.log(e + '\n');
+			
+			});	
+		})
+	
+		
+	console.log('**************bienvenida**************\n');
 	const saludo= $('.wpb_content_element')
-	console.log(saludo.text().trim());
+	const img= $('.vc_figure').find('.vc_single_image-wrapper').find('img').attr('src')	
+	console.log(saludo.text().trim());		
+	console.log(img);
 }
 
 fce();
