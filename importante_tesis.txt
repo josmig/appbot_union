@@ -1,0 +1,12 @@
+herramientas tipos de las tecnologias
+para el marco teorico
+
+acceso public que metodo use para la extraccion de datos que tecnicas
+
+
+
+Objetivo 1 --> 
+		Lista de que estoy extrayendo o que necesito extraer
+		Extracción de datos con JS o Python
+		Limpieza de datos bleach python 
+		Exportar en JSON 
