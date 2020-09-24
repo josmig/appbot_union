@@ -1,3 +1,22 @@
 Webscrapping(Analizar y guardar la informacion de un sitio web) utilizando nodjes
-	
+
 	Cheerio --> Permite analizar un documento HTML(DOM) y extraer la información
+
+
+
+	//const carrerasfce = $('.menu-item-text .menu-text').text('Carreras');
+	//const carrerasfce= $('nav');
+	// const carrerasfce = $('nav span.menu-text').each((indice,elemento) => {
+	// 	console.log(indice,$(elemento).text());
+
+	// })
+	// console.log(carrerasfce.text().eq(7).trim());
+
+
+
+
+			/*console.log('**************bienvenida**************\n');
+			const saludo= $('.wpb_content_element')
+			const img= $('.vc_figure').find('.vc_single_image-wrapper').find('img').attr('src')
+			console.log(saludo.text().trim());
+			console.log(img);*/
