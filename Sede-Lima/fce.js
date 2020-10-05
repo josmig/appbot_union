@@ -8,6 +8,7 @@ async function fce(){
 	const $ = await request.get({
 		uri:'https://www.upeu.edu.pe/fce/',
 		uri:'https://www.upeu.edu.pe/fce/mision-vision/',
+		uri:'https://www.upeu.edu.pe/fce/capellania/',
 		transform: body => cheerio.load(body)
 	});
 
@@ -92,8 +93,11 @@ async function fce(){
 	console.log('*******mision-vision********');
 	$('.wf-container-main').each((i,el)=>{
 		let content1 = $('.wpb_content_element').text().trim()		
-		console.log(content1,i);
+		console.log(content1);
 	});
+	//Capellania
+	const img = $('.vc_figure').find('.vc_single_image-wrapper').find('img').attr('src')
+	console.log(img);
 }
 fce();
 

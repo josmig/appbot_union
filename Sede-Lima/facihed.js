@@ -27,7 +27,7 @@ async function facihed(){
 
 	//carreras FCE
 	console.log('*****carreras FACIHED******\n');
-		writeStream.write('Carreras')
+		//writeStream.write('Carreras')
 		$('.main-nav').each((i,el)=>{
 			let carreras = [];
 			const items1 = $(el).find('li .menu-item-962').text();
