@@ -17,7 +17,7 @@ async function fce(){
 		const titulo_1 = $(el).find('.uvc-main-heading').text();
 		const parrafo = $(el).find('p').text();
 		if( i === 0){
-			console.log('**** MOtivación ****');
+			console.log('**** Motivación ****');
 			console.log(titulo_1);
 			console.log(parrafo);
 		}else if(i === 1){
