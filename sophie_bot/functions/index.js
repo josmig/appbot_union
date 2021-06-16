@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require ('body-parser');
 const path = require('path');
 
+const upeu_libreria = require('./UnionLib');
+
 //Variables globales
 
 
@@ -23,9 +25,19 @@ server.get("/",(req, res) => {
 
 //Acceso correcto
 server.post("/upeu",(req,res)=>{
+    let contexto = "nada";
     let resultado = `petición recibida post correcta!!`;
+    try{
+      contexto = req.body.queryResult.action;
+      resultado =`Recibida petición post incorrecta`;
+    } catch(error){
+      console.log("Error contexto vacio : " + error);
+    }
     res.json(resultado);
 });
+
+
+
 
 const local = true; //Para ejecutar el servidor en local
 if(local) {
