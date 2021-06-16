@@ -1,11 +1,11 @@
 /**
- * Crea una respuesta basica a partir de un texto
+ * Crea un respuesta basica a partir de un texto
  * @param {*} textoEnviar 
  * @returns la cadena JSON de respuesta
  */
 
-function respuestBasica(textoEnviar){
-    let respuesta = { 
+function respuestaBasica(textoEnviar){
+    let respuesta = {
     "fulfillmentText": textoEnviar,
     "fulfillmentMessages": [
       {
@@ -60,15 +60,11 @@ function respuestBasica(textoEnviar){
           ]
         }
       }
-    ]};
+    ]
+    }
     return respuesta;
 }
 
-
-function hola(nombre){
-    console.log(`Encantado de conocerte ${nombre}`);
-}
-  
-module.exports ={  
-  respuestBasica:respuestBasica  
+module.exports={
+    respuestaBasica: respuestaBasica
 }
