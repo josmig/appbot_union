@@ -27,32 +27,7 @@ function respuestaBasica(textoEnviar){
             }
           ]
         }
-      },
-      {
-        "platform": "ACTIONS_ON_GOOGLE",
-        "suggestions": {
-          "suggestions": [
-            {
-              "title": "Nosotros"
-            },
-            {
-              "title": "Admisión"
-            },
-            {
-              "title": "Sedes"
-            },
-            {
-              "title": "Contactos"
-            },
-            {
-              "title": "Académico"
-            },
-            {
-              "title": "Ayuda"
-            }
-          ]
-        }
-      },
+      },     
       {
         "text": {
           "text": [
@@ -65,6 +40,38 @@ function respuestaBasica(textoEnviar){
     return respuesta;
 }
 
+/**
+  @param {*} res Añade a una respuesta basica la lista de sugerencias
+  @param {*} opciones ES LA LISTA de sugerencias
+  ["opcion1","opcion2","opcion3"]
+ */
+function addSugerencia(res,opciones){
+  res.fulfillmentMessages.push({
+        "platform": "ACTIONS_ON_GOOGLE",
+        "suggestions": {
+          "suggestions":listaOpciones(opciones)
+          }
+        });
+}
+/**
+  @param {*} opciones recibe la lista de opciones
+  @returns Devuelve la lista en formato suggestions de Google
+    [{"title" : valor1}, ...]
+ */
+function listaOpciones(opciones){
+  let resultado = [];
+  for(let i=0; i< opciones.length;i++){
+    resultado.push({"title": opciones[i]});
+  }
+  return resultado;
+}
+
+
+
+
+
+//Exportaciones
 module.exports={
-    respuestaBasica: respuestaBasica
+    respuestaBasica: respuestaBasica,
+    addSugerencia : addSugerencia
 }

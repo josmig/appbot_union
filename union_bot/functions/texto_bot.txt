@@ -1,0 +1,7 @@
+input.welcome = {
+    text1 : ¿Que tal?Me llamo Sophia seré tu asistente virtual. Estoy aquí para brindarte información sobre la UPeU.
+    text2 : ¡Hola! Soy Sophia tu asistente virtual, estoy para para ayudarte y brindarte información sobre la Universidad Peruana Unión
+    text3 : Para poder comenzar , te sugiero elegir el campus de tu interés, para eso puedes elegir la opción sedes que se encuentra en la parte inferior.
+}
+
+Suggestions Chips = [Nosotros,Admisión,Sedes,Contactos,Academico, Ayuda]
