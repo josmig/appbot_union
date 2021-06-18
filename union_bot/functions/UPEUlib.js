@@ -18,16 +18,16 @@ function respuestaBasica(textoEnviar) {
           ]
         }
       },
-      {
+      /* {
         "platform": "ACTIONS_ON_GOOGLE",
         "simpleResponses": {
           "simpleResponses": [
             {
-              "textToSpeech": "Para poder comenzar , te sugiero elegir el campus de tu interés, para eso puedes elegir la opción sedes que se encuentra en la parte inferior."
+              "textToSpeech": 
             }
           ]
         }
-      },
+      }, */
       {
         "text": {
           "text": [
@@ -91,9 +91,23 @@ function addCards(res, titulo, texto, imagen) {
   );
 }
 
+function reduceaOcho(opciones){
+  let rest = []; //Array resultado con 8 opciones ordenadas de forma aleatoria
+  let i= 0; // contador bucle
+  let pos;  //posicion seleccionada
+
+  while(i<8&&opciones.length > 0){
+      pos = Math.floor(Math.random()*opciones.length);
+      rest.push(opciones[pos]);
+      opciones.splice(pos,1);
+      i++;
+  }
+  return rest;
+}
 //Exportaciones
 module.exports = {
   respuestaBasica: respuestaBasica,
   addSugerencia: addSugerencia,
-  addCards: addCards
+  addCards: addCards,
+  reduceaOcho:reduceaOcho
 }

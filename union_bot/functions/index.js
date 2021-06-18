@@ -27,7 +27,7 @@ server.get("/",(req, res) => {
 server.post('/upeu', (req,res) => {
   let context = "";
   let result  = `Petición resivida estado de post incorrecto`;
-  let opciones = ["Admisión","Nosotros","Sedes","Contactos","Académico","Ayuda","Salir"]; 
+  let opciones = lib.reduceaOcho(["Admisión","Nosotros","Sedes","Contactos","Académico","Servicios","Facultades","Carreras","Test Vocacional","CEPRE Upeu","Ayuda","Salir"]); 
   try{
     context = req.body.queryResult.action;
     result = `Recibida peticion de accione ${context}`;
@@ -45,13 +45,19 @@ server.post('/upeu', (req,res) => {
 
   if(context === "input.welcome"){
     /************input.welcome************* */
-    textoEnviar = "¡Hola! Me llamo Sophia seré tu asistente virtual. Estoy aquí para brindarte información sobre la UPeU.";
+    textoEnviar = "¡Hola! Me llamo Sophia seré tu asistente virtual. Estoy aquí para brindarte información sobre la UPeU. Para poder comenzar , te sugiero elegir el campus de tu interés, para eso puedes elegir la opción sedes que se encuentra en la parte inferior.";
     /* textoEnviar = "Hola me llamo pantigoso"; */
-     result = lib.respuestaBasica(textoEnviar);
+     result = lib.respuestaBasica(textoEnviar);  
+  }else if(context === "menu"){
+    result = lib.respuestaBasica('Que bueno que lo preguntes , te sugiero los siguientes temas para que conozcas mas de nosotros.');
+  }
+  else{
+    //Se recibe un actions desconocido (contexto)
+    result = lib.respuestaBasica(`Todavia no he aprendido a gestionar : ${context}`);
   }
   lib.addSugerencia(result, opciones);
   res.json(result);
-})
+});
 
 
 //Para ejecutar el servidor en local true = local false = firebase
