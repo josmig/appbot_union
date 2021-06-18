@@ -44,6 +44,7 @@ server.post('/upeu', (req,res) => {
   }
 
   if(context === "input.welcome"){
+    /************input.welcome************* */
     textoEnviar = "¡Hola! Me llamo Sophia seré tu asistente virtual. Estoy aquí para brindarte información sobre la UPeU.";
     /* textoEnviar = "Hola me llamo pantigoso"; */
      result = lib.respuestaBasica(textoEnviar);

@@ -4,8 +4,8 @@
  * @returns la cadena JSON de respuesta
  */
 
-function respuestaBasica(textoEnviar){
-    let respuesta = {
+function respuestaBasica(textoEnviar) {
+  let respuesta = {
     "fulfillmentText": textoEnviar,
     "fulfillmentMessages": [
       {
@@ -27,7 +27,7 @@ function respuestaBasica(textoEnviar){
             }
           ]
         }
-      },     
+      },
       {
         "text": {
           "text": [
@@ -36,8 +36,8 @@ function respuestaBasica(textoEnviar){
         }
       }
     ]
-    }
-    return respuesta;
+  }
+  return respuesta;
 }
 
 /**
@@ -45,33 +45,55 @@ function respuestaBasica(textoEnviar){
   @param {*} opciones ES LA LISTA de sugerencias
   ["opcion1","opcion2","opcion3"]
  */
-function addSugerencia(res,opciones){
+function addSugerencia(res, opciones) {
   res.fulfillmentMessages.push({
-        "platform": "ACTIONS_ON_GOOGLE",
-        "suggestions": {
-          "suggestions":listaOpciones(opciones)
-          }
-        });
+    "platform": "ACTIONS_ON_GOOGLE",
+    "suggestions": {
+      "suggestions": listaOpciones(opciones)
+    }
+  });
 }
 /**
   @param {*} opciones recibe la lista de opciones
   @returns Devuelve la lista en formato suggestions de Google
     [{"title" : valor1}, ...]
  */
-function listaOpciones(opciones){
+function listaOpciones(opciones) {
   let resultado = [];
-  for(let i=0; i< opciones.length;i++){
-    resultado.push({"title": opciones[i]});
+  for (let i = 0; i < opciones.length; i++) {
+    resultado.push({ "title": opciones[i] });
   }
   return resultado;
 }
 
 
-
-
+/**
+ * 
+ * @param {*} res Añade a una respuesta basica un card
+ * @param {*} titulo  Titulo del card
+ * @param {*} texto  Texto principal
+ * @param {*} imagen Imagen asociada
+ */
+function addCards(res, titulo, texto, imagen) {
+  res.fulfillmentMessages.push(
+    {
+      "platform": "ACTIONS_ON_GOOGLE",
+      "basicCard": {
+        "title": titulo,
+        "subtitle": titulo,
+        "formattedText": texto,
+        "image": {
+          "imageUri": imagen,
+          "accessibilityText": titulo
+        }
+      }
+    }
+  );
+}
 
 //Exportaciones
-module.exports={
-    respuestaBasica: respuestaBasica,
-    addSugerencia : addSugerencia
+module.exports = {
+  respuestaBasica: respuestaBasica,
+  addSugerencia: addSugerencia,
+  addCards: addCards
 }
