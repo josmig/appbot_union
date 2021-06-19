@@ -13,6 +13,9 @@ server.use(bodyParser.urlencoded({
 }));
 server.use(bodyParser.json()); //Para analizar JSON
 
+//variables globales
+global.listaServicio = require('./servicios.json');
+global.imagenes = "https://us-central1-union-bot-uwct.cloudfunctions.net/unionBot/imagenes/";
 
 
 //Para que el server nos permita cargar IvgVy6LPvoMPgjMdQ185nN6psJyBJ4yOpzqm695
@@ -49,7 +52,44 @@ server.post('/upeu', (req,res) => {
     /* textoEnviar = "Hola me llamo pantigoso"; */
      result = lib.respuestaBasica(textoEnviar);  
   }else if(context === "menu"){
+    /**********Menu**************/
     result = lib.respuestaBasica('Que bueno que lo preguntes , te sugiero los siguientes temas para que conozcas mas de nosotros.');
+  }else if(context === "servicios"){
+     let servicio;
+     try{
+      servicio = req.body.queryResult.parameters.servicios;
+     }catch(error){
+      console.log("Error servicio no encontrado, para mas informacion : " + error);
+     }
+     if(servicio){
+      let arListaServicio= Object.keys(global.listaServicio).slice();
+      //Vamos a genera el campo opciones para que aparezcancomo sugerencias de servicios y el menú
+      opciones=arListaServicio.slice();
+      opciones.unshift("Menu");
+      //Si ha llegado parametro servicio y estan en la lista
+      if(global.listaServicio[servicio]){
+        textoEnviar = global.listaServicio[servicio];
+        imagen= encodeURI(global.imagenes + servicio + + ".jpg");
+        /* let url ="https://www.google.com/search?q="+servicio; */
+        result = lib.respuestaBasica('Cada campus cuenta con servicios diferentes, los servicios generales son los siguientes.Si deseas conocer los servicios de un campus especifico en la parte inferior encontraras las opciones');
+        description = 'Hola mundo';
+        lib.addCarouselCard(result,imagen,textoEnviar,description,textoEnviar);
+      }else{
+        //Si el servicio no existe
+        result = lib.respuestaBasica(`Lo siento todavia no he aprendido nada de ${servicio}. Seguiré estudiando`);
+      }
+     }else{
+       // Servicio vacio
+       result = lib.respuestaBasica("No se ha recibido personaje");
+     }
+  }else if(context === "lista_servicio"){
+    /********lista servicio********* */
+    let arListaServicio= Object.keys(global.listaServicio).slice();
+      //Vamos a genera el campo opciones para que aparezcancomo sugerencias de servicios y el menú
+      opciones=arListaServicio.slice();
+      opciones.unshift("Menu");
+      result = lib.respuestaBasica("Te muestro algunos servicios con los que contamos");
+
   }
   else{
     //Se recibe un actions desconocido (contexto)

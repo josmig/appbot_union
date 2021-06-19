@@ -91,16 +91,42 @@ function addCards(res, titulo, texto, imagen) {
   );
 }
 
-function reduceaOcho(opciones){
+function addCarouselCard(res,url,titulo,description,option_key) {
+  res.fulfillmentMessages.push(
+    {
+      "platform": "ACTIONS_ON_GOOGLE",
+      "carouselSelect": {
+        "items": [
+          {
+            "info": {
+              "key": option_key
+            },
+            "title": titulo,
+            "description": description,
+            "image": {
+              "imageUri": url,
+              "accessibilityText": titulo
+            }
+          },          
+        ]
+      }
+    }
+  )
+}
+/**
+ * 
+ * 
+ */
+function reduceaOcho(opciones) {
   let rest = []; //Array resultado con 8 opciones ordenadas de forma aleatoria
-  let i= 0; // contador bucle
+  let i = 0; // contador bucle
   let pos;  //posicion seleccionada
 
-  while(i<8&&opciones.length > 0){
-      pos = Math.floor(Math.random()*opciones.length);
-      rest.push(opciones[pos]);
-      opciones.splice(pos,1);
-      i++;
+  while (i < 8 && opciones.length > 0) {
+    pos = Math.floor(Math.random() * opciones.length);
+    rest.push(opciones[pos]);
+    opciones.splice(pos, 1);
+    i++;
   }
   return rest;
 }
@@ -109,5 +135,6 @@ module.exports = {
   respuestaBasica: respuestaBasica,
   addSugerencia: addSugerencia,
   addCards: addCards,
-  reduceaOcho:reduceaOcho
+  reduceaOcho: reduceaOcho,
+  addCarouselCard:addCarouselCard
 }

@@ -5,3 +5,8 @@ input.welcome = {
 }
 
 Suggestions Chips = [Nosotros,Admisión,Sedes,Contactos,Academico, Ayuda]
+
+Carousel  = {
+    text1 : Cada campus cuenta con servicios diferentes, los servicios generales son los siguientes.Si deseas conocer los servicios de un campus especifico en la parte inferior encontraras las opciones.
+
+}
