@@ -30,7 +30,7 @@ server.get("/",(req, res) => {
 server.post('/upeu', (req,res) => {
   let context = "";
   let result  = `Petición resivida estado de post incorrecto`;
-  let opciones = lib.reduceaOcho(["Admisión","Nosotros","Sedes","Contactos","Académico","Servicios","Facultades","Carreras","Test Vocacional","CEPRE Upeu","Ayuda","Salir"]); 
+  let opciones = ["Sedes","Admisión","Nosotros","Servicios","Ayuda","Salir"];
   try{
     context = req.body.queryResult.action;
     result = `Recibida peticion de accione ${context}`;
@@ -54,7 +54,7 @@ server.post('/upeu', (req,res) => {
   }else if(context === "menu"){
     /**********Menu**************/
     result = lib.respuestaBasica('Que bueno que lo preguntes , te sugiero los siguientes temas para que conozcas mas de nosotros.');
-  }else if(context === "servicios"){
+  }else if(context === "asd"){ //servicios
      let servicio;
      try{
       servicio = req.body.queryResult.parameters.servicios;
@@ -89,7 +89,6 @@ server.post('/upeu', (req,res) => {
       opciones=arListaServicio.slice();
       opciones.unshift("Menu");
       result = lib.respuestaBasica("Te muestro algunos servicios con los que contamos");
-
   }
   else{
     //Se recibe un actions desconocido (contexto)

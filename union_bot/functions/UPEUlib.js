@@ -117,7 +117,7 @@ function addCarouselCard(res,url,titulo,description,option_key) {
  * 
  * 
  */
-function reduceaOcho(opciones) {
+/* function reduceaOcho(opciones) {
   let rest = []; //Array resultado con 8 opciones ordenadas de forma aleatoria
   let i = 0; // contador bucle
   let pos;  //posicion seleccionada
@@ -129,12 +129,12 @@ function reduceaOcho(opciones) {
     i++;
   }
   return rest;
-}
+} */
 //Exportaciones
 module.exports = {
   respuestaBasica: respuestaBasica,
   addSugerencia: addSugerencia,
   addCards: addCards,
-  reduceaOcho: reduceaOcho,
+  /* reduceaOcho: reduceaOcho, */
   addCarouselCard:addCarouselCard
 }
