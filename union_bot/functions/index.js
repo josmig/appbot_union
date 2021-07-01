@@ -30,7 +30,7 @@ server.get("/",(req, res) => {
 server.post('/upeu', (req,res) => {
   let context = "";
   let result  = `Petición resivida estado de post incorrecto`;
-  let opciones = ["Sedes","Admisión","Nosotros","Servicios","Ayuda","Salir"];
+  let opciones = ["Sedes","Admisión","Facultades","Nosotros","Servicios","Ayuda","Salir"];
   try{
     context = req.body.queryResult.action;
     result = `Recibida peticion de accione ${context}`;
